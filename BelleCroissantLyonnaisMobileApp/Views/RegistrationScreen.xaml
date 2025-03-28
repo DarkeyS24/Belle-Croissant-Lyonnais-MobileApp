@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="BelleCroissantLyonnaisMobileApp.Views.RegistrationScreen"
+             NavigationPage.HasNavigationBar="false"
+             Title="RegistrationScreen">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button" x:Key="LocalButtonStyle">
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="BorderWidth" Value="1"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="BorderColor" Value="Black"/>
+        </Style>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="600, *" Padding="20">
+        <Border Stroke="black" Grid.Row="0">
+            <StackLayout Orientation="Vertical" Padding="25" Spacing="20">
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="First Name:" VerticalOptions="Center"/>
+                    <Entry Placeholder="First Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="Last Name:" VerticalOptions="Center"/>
+                    <Entry Placeholder="Last Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="Email Address:" VerticalOptions="Center"/>
+                    <Entry Placeholder="Ex. fulano@gmail.com" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="Password:" VerticalOptions="Center"/>
+                    <Entry Placeholder="Password" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="Confirm Password" VerticalOptions="Center"/>
+                    <Entry Placeholder="First Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+
+                <Label Text="Security Question"/>
+                <Picker/>
+
+                <StackLayout Orientation="Horizontal" Spacing="15">
+                    <Label Text="Security Answer" VerticalOptions="Center"/>
+                    <Entry Placeholder="Answer" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal" Spacing="5">
+                    <CheckBox Color="Black"/>
+                    <Label Text="Subscribe to Mailing List" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </Border>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="1">
+            <Button Text="Register" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="Start" Margin="40,0,0,0"/>
+            <Button Text="Register" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="EndAndExpand" Margin="0,0,40,0"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
