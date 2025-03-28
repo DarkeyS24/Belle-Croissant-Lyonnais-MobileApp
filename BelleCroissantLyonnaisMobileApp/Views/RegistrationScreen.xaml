@@ -7,6 +7,35 @@
              Title="RegistrationScreen">
 
     <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="Valid">
+            <Setter Property="Text" Value=""/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="InvalidFirstName">
+            <Setter Property="Text" Value="Type your first name"/>
+            <Setter Property="TextColor" Value="Red"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="InvalidLastName">
+            <Setter Property="Text" Value="Type your last name"/>
+            <Setter Property="TextColor" Value="Red"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="InvalidAnswer">
+            <Setter Property="Text" Value="Type your security answer"/>
+            <Setter Property="TextColor" Value="Red"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="InvalidEmail">
+            <Setter Property="Text" Value="Invalid email"/>
+            <Setter Property="TextColor" Value="Red"/>
+        </Style>
+        
+        <Style TargetType="Label" x:Key="UnmatchPasswords">
+            <Setter Property="Text" Value="Password doesn't match"/>
+            <Setter Property="TextColor" Value="Red"/>
+        </Style>
+        
         <Style TargetType="Button" x:Key="LocalButtonStyle">
             <Setter Property="VerticalOptions" Value="Center"/>
             <Setter Property="BackgroundColor" Value="White"/>
@@ -18,51 +47,66 @@
         </Style>
     </ContentPage.Resources>
     <Grid RowDefinitions="600, *" Padding="20">
-        <Border Stroke="black" Grid.Row="0">
+        <Border Stroke="black" Grid.Row="0" Margin="0,30,0,0">
             <StackLayout Orientation="Vertical" Padding="25" Spacing="20">
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="First Name:" VerticalOptions="Center"/>
-                    <Entry Placeholder="First Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="Last Name:" VerticalOptions="Center"/>
-                    <Entry Placeholder="Last Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
-                
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="Email Address:" VerticalOptions="Center"/>
-                    <Entry Placeholder="Ex. fulano@gmail.com" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label Text="First Name:" VerticalOptions="Center"/>
+                        <Entry x:Name="FirstNameEntry" Placeholder="First Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <Label x:Name="FirstNameLbl" FontSize="12"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label Text="Last Name:" VerticalOptions="Center"/>
+                        <Entry x:Name="LastNameEntry" Placeholder="Last Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <Label x:Name="LastNameLbl" FontSize="12"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label Text="Email Address:" VerticalOptions="Center"/>
+                        <Entry x:Name="EmailEntry" Placeholder="Ex. fulano@gmail.com" WidthRequest="200" HorizontalOptions="EndAndExpand"></Entry>
+                    </StackLayout>
+                    <Label x:Name="EmailLbl" FontSize="12"/>
+                </VerticalStackLayout>
                 
                 <StackLayout Orientation="Horizontal" Spacing="15">
                     <Label Text="Password:" VerticalOptions="Center"/>
-                    <Entry Placeholder="Password" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                    <Entry x:Name="PasswordEntry" Placeholder="Password" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
-                
-                <StackLayout Orientation="Horizontal" Spacing="15">
+
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
                     <Label Text="Confirm Password" VerticalOptions="Center"/>
-                    <Entry Placeholder="First Name" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
-
-                <Label Text="Security Question"/>
-                <Picker/>
-
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <Label Text="Security Answer" VerticalOptions="Center"/>
-                    <Entry Placeholder="Answer" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
-                </StackLayout>
+                        <Entry x:Name="ConfirmPasswordEntry" Placeholder="Re-type password" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <Label x:Name="PasswordLbl" FontSize="12"/>
+                </VerticalStackLayout>
                 
-                <StackLayout Orientation="Horizontal" Spacing="5">
-                    <CheckBox Color="Black"/>
-                    <Label Text="Subscribe to Mailing List" VerticalOptions="Center"/>
-                </StackLayout>
+                <Label Text="Security Question"/>
+                <Picker x:Name="QuestionPicker"/>
+
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="15">
+                        <Label Text="Security Answer" VerticalOptions="Center"/>
+                        <Entry x:Name="AnswerEntry" Placeholder="Answer" WidthRequest="200" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <Label x:Name="AnswerLbl" FontSize="12"/>
+                </VerticalStackLayout>
+
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <CheckBox x:Name="mailingCheck" Color="Black"/>
+                        <Label Text="Subscribe to Mailing List" VerticalOptions="Center"/>
+                    </StackLayout>
             </StackLayout>
         </Border>
 
         <StackLayout Orientation="Horizontal" Grid.Row="1">
-            <Button Text="Register" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="Start" Margin="40,0,0,0"/>
-            <Button Text="Register" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="EndAndExpand" Margin="0,0,40,0"/>
+            <Button x:Name="RegisterButton" Text="Register" Clicked="OnButtonClickedToRegister" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="Start" Margin="40,0,0,0"/>
+            <Button x:Name="CancelButton" Text="Cancel" Clicked="OnButtonClickedToCancel" Style="{StaticResource LocalButtonStyle}" HorizontalOptions="EndAndExpand" Margin="0,0,40,0"/>
         </StackLayout>
     </Grid>
 </ContentPage>
