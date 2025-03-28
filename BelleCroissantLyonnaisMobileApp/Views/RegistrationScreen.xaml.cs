@@ -9,39 +9,33 @@ public partial class RegistrationScreen : ContentPage
 
     private void OnButtonClickedToRegister(object sender, EventArgs e)
     {
-        if (IsValidFirstName() && IsValidLastName() && IsValidEmail() &&  IsValidPassword() && IsValidAnswer())
+        var value1 = IsValidFirstName();
+        var value2 = IsValidLastName();
+        var value3 = IsValidEmail();
+        var value4 = IsValidPassword();
+        var value5 = IsValidAnswer();
+
+        if (value1 && value2 && value3 && value4 && value5)
         {
-            Navigation.PushModalAsync(new LoginScreen());
+            Navigation.PushModalAsync(new ProfileScreen());
         }
     }
 
     private bool IsValidEmail()
     {
-        bool value = false;
-        if (!string.IsNullOrEmpty(EmailEntry.Text))
+        EmailLbl.Style = this.Resources["Valid"] as Style;
+        if (!string.IsNullOrEmpty(EmailEntry.Text) &&
+            EmailEntry.Text.Contains("@") &&
+            (EmailEntry.Text.EndsWith(".com") || EmailEntry.Text.EndsWith(".com.br")))
         {
             EmailLbl.Style = this.Resources["Valid"] as Style;
-            if (!EmailEntry.Text.Contains(".com") || !EmailEntry.Text.Contains(".com.br"))
-            {
-                EmailLbl.Style = this.Resources["InvalidEmail"] as Style;
-                value = false;
-            }
-            else if (!EmailEntry.Text.Contains("@"))
-            {
-                EmailLbl.Style = this.Resources["InvalidEmail"] as Style;
-                value = false;
-            }
-            else
-            {
-                EmailLbl.Style = this.Resources["Valid"] as Style;
-                value = true;
-            }
+            return true;
         }
         else
         {
-            EmailLbl.Text = "Type your email";
+            EmailLbl.Style = this.Resources["InvalidEmail"] as Style;
+            return false;
         }
-            return value;
     }
     private bool IsValidPassword()
     {
@@ -58,7 +52,7 @@ public partial class RegistrationScreen : ContentPage
     }
     private bool IsValidFirstName()
     {
-        if (!string.IsNullOrEmpty(FirstNameEntry.Text))
+        if (string.IsNullOrEmpty(FirstNameEntry.Text))
         {
             FirstNameLbl.Style = this.Resources["InvalidFirstName"] as Style;
             return false;
@@ -71,7 +65,7 @@ public partial class RegistrationScreen : ContentPage
     }
     private bool IsValidLastName()
     {
-        if (!string.IsNullOrEmpty(LastNameEntry.Text))
+        if (string.IsNullOrEmpty(LastNameEntry.Text))
         {
             LastNameLbl.Style = this.Resources["InvalidLastName"] as Style;
             return false;
@@ -85,7 +79,7 @@ public partial class RegistrationScreen : ContentPage
     }
     private bool IsValidAnswer()
     {
-        if (!string.IsNullOrEmpty(AnswerEntry.Text))
+        if (string.IsNullOrEmpty(AnswerEntry.Text))
         {
             AnswerLbl.Style = this.Resources["InvalidAnswer"] as Style;
             return false;
